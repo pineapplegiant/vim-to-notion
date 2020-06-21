@@ -7,8 +7,9 @@
 
 ## Inspiration
 
-I like to write in Vim, but wanted to continue editing on the go in Notion... This helps me to achieve something like that.
+I like to write in Vim, but wanted to continue editing on the go in Notion... This helps me upload "faster", to achieve something of that nature idk.
 
+![How it works](./vim-notion.gif)
 
 ## Tools
 * pipenv
@@ -22,16 +23,17 @@ Put your env files in a `.env` file in the same directory
 API_TOKEN = "<MY_API_TOKEN>"
 
 # Table full page
-COLLECTION_VIEW = "<MY URL TO THE TABLE>"
-
-# Home Page
-URL = "<URL TO HOME PAGE ON NOTION">
-
+COLLECTION_VIEW = "<MY_URL_TO_THE_TABLE>"
 ```
-Run `pipenv run notion_scripts.py -f MyMarkdownFile.md`
+First download necessary packages for pipenv:
+`pipenv install`
+
+Then run `pipenv run notion_scripts.py -f testMarkdownExample.md`
 
 
 ### Packages used:
 * ["unofficial" notion api](https://github.com/jamalex/notion-py)
 * [md2notion](https://github.com/Cobertos/md2notion)
 * [python frontmatter parser](https://github.com/eyeseast/python-frontmatter)
+* [python-dotenv](https://pypi.org/project/python-dotenv/)
+* [pprint](https://docs.python.org/3/library/pprint.html)
