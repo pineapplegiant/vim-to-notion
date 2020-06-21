@@ -59,7 +59,7 @@ def main():
     # Get everything for notion: CV is the CollectionViewPageBlock "Table Page"
     cv, token_v2, collection_view, client = login_to_notion()
     dict_of_articles = get_articles(cv)
-    print(f"The List of {len(dict_of_articles)} articles are: \n")
+    print(f"There are {len(dict_of_articles)} articles: \n")
     pprint(dict_of_articles)
 
     if title in dict_of_articles:
@@ -89,7 +89,7 @@ def main():
     else:
         # Upload Blog since it's not in the list
         print(f"\n\n'{title}'\nNOT IN NOTION LIST")
-        print(f"\tUPLOADING NEW ARTICLE INTO NOTION")
+        print(f"\tUPLOADING NEW ARTICLE INTO NOTION\n")
 
 
     # Upload New Blog Page
