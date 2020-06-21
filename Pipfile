@@ -8,7 +8,6 @@ verify_ssl = true
 [packages]
 notion = "*"
 python-dotenv = "*"
-markdown = "*"
 md2notion = "*"
 python-frontmatter = "*"
 pprint = "*"
