@@ -101,11 +101,8 @@ def main():
         if post['tags']:
             row.tags = post['tags']
         if post['date']:
-            #row.date = NotionDate(post['date'])
             row.date = NotionDate(datetime.strptime(post['date'], "%Y-%m-%d %H:%M:%S"))
-            #row.date = NotionDate(datetime.now())
         if['last_edited']:
-            #row.last_edited = NotionDate(post['last_edited'])
             row.last_edited = NotionDate(datetime.strptime(post['last_edited'], "%Y-%m-%d %H:%M:%S"))
     except KeyError as e:
         print("\n\tERROR")
