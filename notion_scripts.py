@@ -1,5 +1,6 @@
 import os
 import sys
+from uuid import uuid1
 from datetime import datetime, date
 import argparse
 from dotenv import load_dotenv
@@ -27,7 +28,7 @@ def login_to_notion():
     client = NotionClient(token_v2=token_v2)
 
     # Grab Table of Blog Posts
-    cv = client.get_collection_view(collection_view)
+    cv = client.get_collection_view(collection_view, force_refresh=True)
 
     return cv, token_v2, collection_view, client
 
@@ -55,9 +56,13 @@ def main():
     # Load the file passed in through args
     post = frontmatter.load(args.file)
     title = post['title']
+    tags = post['tags']
+    date = post['date']
+    last_edited = post['last_edited']
 
     # Get everything for notion: CV is the CollectionViewPageBlock "Table Page"
     cv, token_v2, collection_view, client = login_to_notion()
+    collection = cv.collection
     dict_of_articles = get_articles(cv)
     print(f"There are {len(dict_of_articles)} articles: \n")
     pprint(dict_of_articles)
@@ -91,19 +96,18 @@ def main():
         print(f"\n\n'{title}'\nNOT IN NOTION LIST")
         print(f"\tUPLOADING NEW ARTICLE INTO NOTION\n")
 
-
     # Upload New Blog Page
     row = cv.collection.add_row()
 
     # Add Metadata
     try:
-        row.title = post['title']
-        if post['tags']:
-            row.tags = post['tags']
-        if post['date']:
-            row.date = NotionDate(datetime.strptime(post['date'], "%Y-%m-%d %H:%M:%S"))
-        if['last_edited']:
-            row.last_edited = NotionDate(datetime.strptime(post['last_edited'], "%Y-%m-%d %H:%M:%S"))
+        row.title = title
+        if tags:
+            row.tags = tags
+        if date:
+            row.date = NotionDate(datetime.strptime(date, "%Y-%m-%d %H:%M:%S"))
+        if last_edited:
+            row.last_edited = NotionDate(datetime.strptime(last_edited, "%Y-%m-%d %H:%M:%S"))
     except KeyError as e:
         print("\n\tERROR")
         print(e)
