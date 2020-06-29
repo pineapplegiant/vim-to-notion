@@ -11,6 +11,7 @@ python-dotenv = "*"
 md2notion = "*"
 python-frontmatter = "*"
 pprint = "*"
+uuid = "*"
 
 [requires]
 python_version = "3.7"
