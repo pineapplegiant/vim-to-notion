@@ -107,7 +107,7 @@ def main():
         if date:
             row.date = NotionDate(datetime.strptime(date, "%Y-%m-%d %H:%M:%S"))
         if last_edited:
-            row.last_edited = NotionDate(datetime.strptime(last_edited, "%Y-%m-%d %H:%M:%S"))
+            row.last_edited_locally = NotionDate(datetime.strptime(last_edited, "%Y-%m-%d %H:%M:%S"))
     except KeyError as e:
         print("\n\tERROR")
         print(e)
